@@ -8,6 +8,8 @@ const petId = 11730189; // id do animal
 describe('PetStore Swegger - Pet', () => {
     
     const request = supertest(baseUrl);
+    const pets = require('../json/petN')
+    const pet = require('../json/petBase.json')
 
     // Inserir um registro
     it('POST Pet', () => {
@@ -69,5 +71,39 @@ describe('PetStore Swegger - Pet', () => {
             });
         
     });
+
+    pets.array.forEach(({ nomePet, idPet, nomeCadegoria, idCategoria }) => {
+
+        it('Setup Swagger - Add Pets', () => {
+
+            pet.id = idPet
+            pet.name = nomePet
+            pet.category.id = idCategoria
+            pet.category.name = nomeCadegoria
+            pet.tags[0].id = 3
+            pet.tags[0].name = "vaccinated"
+            pet.status = "done"
+
+            return request
+                .post('/pet')
+                .send(pet)
+                .then((response) => {
+                    assert.equal(response.statusCode, 200);
+                });
+
+        });
+
+        it('Teardown Swagger - Delet Pets - ' + nomePet, () => {
+
+            return request
+                .delete(`/pet/${idPet}`)
+                .then((response) => {
+                    assert.equal(response.statusCode, 200);
+                });
+            
+        });
+
+    });
+
 
 });
