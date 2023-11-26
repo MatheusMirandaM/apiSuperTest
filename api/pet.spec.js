@@ -105,5 +105,4 @@ describe('PetStore Swegger - Pet', () => {
 
     });
 
-
 });
