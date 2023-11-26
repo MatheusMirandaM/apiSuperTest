@@ -1,0 +1,18 @@
+{
+    "id": 11730189,
+    "category":{
+        "id": 2,
+        "name": "cat"
+    },
+    "name": "Kira",
+    "photoUrl": [
+        ""
+    ],
+    "tags": [
+        {
+            "id": 3,
+            "name": "vaccinated"
+        }
+    ],
+    "status": "available"
+}
